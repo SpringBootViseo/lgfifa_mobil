@@ -1,5 +1,10 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "cache": {
+      "environment": "all"
+    }
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -26,10 +31,10 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/vender/icofont/icofont.min.css",
-              "src/vender/slick/slick/slick.css",
-              "src/vender/slick/slick/slick-theme.css",
-              "src/vender/sidebar/demo.css"
+              "src/assets/vender/icofont/icofont.min.css",
+              "src/assets/vender/slick/slick/slick.css",
+              "src/assets/vender/slick/slick/slick-theme.css",
+              "src/assets/vender/sidebar/demo.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -59,7 +64,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -98,6 +109,16 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "lgfifa_mobil:build:production",
+            "firebaseProject": "gfeftkoum-mobil",
+            "firebaseHostingSite": "gfeftkoum-mobil"
           }
         }
       }

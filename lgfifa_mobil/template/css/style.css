@@ -75,7 +75,7 @@ p {
 .text-primary {
     color: var(--orange) !important;
 }
-.btn-primary{
+.btn-primary:not(.SocialMedia){
     background-color: var(--orange) !important;
     border-color: var(--orange) !important;
 }

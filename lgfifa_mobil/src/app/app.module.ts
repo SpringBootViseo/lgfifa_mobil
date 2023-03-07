@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -11,6 +10,12 @@ import { PaymentOptionComponent } from './payment-option/payment-option.componen
 import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
 import { CartComponent } from './cart/cart.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TrackDeliveryComponent } from './track-delivery/track-delivery.component';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app'
+import { environment } from 'src/environments/environment';
+import { connectAuthEmulator, FacebookAuthProvider, getAuth, GoogleAuthProvider, provideAuth } from '@angular/fire/auth';
+import { AuthenticationService } from './service/authentication.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +26,27 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FavoritesComponent,
     PaymentOptionComponent,
     PaymentDetailComponent,
-    CartComponent
+    CartComponent,
+    TrackDeliveryComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => {
+      let auth = getAuth()
+      if (environment.useEmulators) {
+        connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: false })
+      }
+      return auth
+    })
   ],
-  providers: [],
+  providers: [
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+    AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

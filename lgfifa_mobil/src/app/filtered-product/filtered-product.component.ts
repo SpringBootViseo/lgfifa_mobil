@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-filtered-product',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./filtered-product.component.css']
 })
 export class FilteredProductComponent {
-
+  constructor(
+    private router: Router
+) {}
 }

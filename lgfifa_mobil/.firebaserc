@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gfeftkoum-mobil": {
+      "hosting": {
+        "lgfifa_mobil": [
+          "gfeftkoum-mobil"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gfeftkoum-mobil"
+  }
+}
